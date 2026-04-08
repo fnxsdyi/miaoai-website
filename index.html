@@ -74,11 +74,11 @@
     }
   }
   (function(){
-    var mobile=/Mobi|Android/i.test(navigator.userAgent);
-    document.querySelector('.share-icon').style.display=mobile?'none':'';
-    document.querySelector('.btn-text-share').style.display=mobile?'none':'';
-    document.querySelector('.fav-icon').style.display=mobile?'':'none';
-    document.querySelector('.btn-text-fav').style.display=mobile?'':'none';
+    var canShare=!!navigator.share;
+    document.querySelector('.share-icon').style.display=canShare?'':'none';
+    document.querySelector('.btn-text-share').style.display=canShare?'':'none';
+    document.querySelector('.fav-icon').style.display=canShare?'none':'';
+    document.querySelector('.btn-text-fav').style.display=canShare?'none':'';
   })();
   </script>
 </body>
