@@ -6,6 +6,13 @@
   let activeCat = 'chat';
   let searchQuery = '';
 
+  // 从 URL 参数读取分类 ?cat=xxx
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat');
+    if (cat) activeCat = cat;
+  })();
+
   // Category icon mapping for tool cards
   const catIcons = {
     chat: '💬', image: '🎨', video: '🎬',

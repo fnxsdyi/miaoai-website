@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提交AI工具 - MiaoAI</title>
+  <meta name="description" content="推荐优质的AI工具到MiaoAI（妙AI），让更多人发现并使用它。">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body{padding-top:5rem;background:linear-gradient(135deg,#f0f4ff,#e8f0fe,#f0f4ff);min-height:100vh}
+    .page{max-width:640px;margin:0 auto;padding:2rem 1.5rem 4rem}
+    h1{font-size:1.75rem;font-weight:700;background:linear-gradient(135deg,#7c3aed,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+    .desc{color:#64748b;margin-bottom:1.5rem;line-height:1.7;font-size:.9rem}
+    .card{background:rgba(255,255,255,.9);border:1px solid rgba(139,92,246,.15);border-radius:1.25rem;padding:2rem;backdrop-filter:blur(20px)}
+    .notice{background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);border-radius:.75rem;padding:1rem;font-size:.8125rem;color:#64748b;margin-bottom:1.5rem;line-height:1.7}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .grp{margin-bottom:1.2rem}
+    label{display:block;font-size:.875rem;font-weight:600;color:#1e293b;margin-bottom:.4rem}
+    label span{color:#ef4444;font-size:.75rem;margin-left:.2rem}
+    input,select,textarea{width:100%;padding:.65rem 1rem;border:1.5px solid rgba(139,92,246,.2);border-radius:.75rem;font-size:.875rem;outline:none;transition:border-color .2s,box-shadow .2s;background:rgba(255,255,255,.95);color:#1e293b;font-family:inherit}
+    input:focus,select:focus,textarea:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+    textarea{resize:vertical;min-height:100px}
+    .tag-row{display:flex;flex-wrap:wrap;gap:.5rem}
+    .tag-btn{display:inline-flex;align-items:center;padding:.35rem .8rem;border-radius:9999px;border:1.5px solid rgba(139,92,246,.25);background:rgba(255,255,255,.9);color:#64748b;font-size:.8125rem;cursor:pointer;transition:all .2s;user-select:none}
+    .tag-btn.selected{border-color:#7c3aed;background:rgba(124,58,237,.1);color:#7c3aed;font-weight:600}
+    .tag-btn input{position:absolute;opacity:0;width:0;height:0}
+    .submit-btn{width:100%;padding:.875rem;border-radius:.75rem;background:linear-gradient(135deg,#7c3aed,#06b6d4);color:white;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:opacity .2s,transform .2s;margin-top:.5rem}
+    .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
+    .success{display:none;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:.75rem;padding:2rem;text-align:center;color:#059669}
+    .success h3{font-size:1.1rem;margin-bottom:.5rem}
+    .back-btn{display:inline-flex;align-items:center;gap:.4rem;color:#7c3aed;font-weight:600;font-size:.9rem;text-decoration:none;padding:.5rem 1rem;border-radius:.6rem;transition:background .2s;margin-bottom:1.5rem}
+    .back-btn:hover{background:rgba(124,58,237,.08)}
+    @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+  <header class="header-glass">
+    <div class="header-inner">
+      <a class="logo" href="/" style="cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <img src="/logo.svg" alt="妙AI" class="logo-img">
+      </a>
+      <div style="flex:1"></div>
+      <a href="/" class="back-btn" style="margin:0">← 返回首页</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <a href="/" class="back-btn">← 返回首页</a>
+    <h1>🚀 提交AI工具</h1>
+    <p class="desc">发现了一款好用的AI工具？推荐给我们，经过审核后会添加到导航站，让更多人发现！</p>
+
+    <div class="card">
+      <div class="notice">
+        💡 <strong>审核说明：</strong>我们主要收录优质AI工具（国内外均可）。提交后团队将在 <strong>3-7 个工作日</strong>内完成审核并邮件通知您。
+      </div>
+
+      <div class="success" id="successPanel">
+        <h3>✅ 提交成功！</h3>
+        <p>感谢推荐！我们会尽快审核，3-7个工作日内处理。</p>
+      </div>
+
+      <form id="form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="grp">
+            <label>工具名称 <span>*</span></label>
+            <input type="text" name="name" placeholder="例如：ChatGPT" required>
+          </div>
+          <div class="grp">
+            <label>官方网站 <span>*</span></label>
+            <input type="url" name="url" placeholder="https://..." required>
+          </div>
+        </div>
+        <div class="grp">
+          <label>工具描述 <span>*</span></label>
+          <textarea name="desc" placeholder="用一句话描述这个工具的核心功能和亮点（20-100字）" required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="grp">
+            <label>您的邮箱 <span>*</span></label>
+            <input type="email" name="email" placeholder="用于接收审核结果" required>
+          </div>
+          <div class="grp">
+            <label>工具分类 <span>*</span></label>
+            <select name="category" required>
+              <option value="">请选择</option>
+              <option value="chat">💬 AI聊天</option>
+              <option value="image">🎨 AI绘画</option>
+              <option value="video">🎬 AI视频</option>
+              <option value="code">💻 AI编程</option>
+              <option value="audio">🎵 AI音频</option>
+              <option value="writing">✍️ AI写作</option>
+            </select>
+          </div>
+        </div>
+        <div class="grp">
+          <label>标签（可多选）</label>
+          <div class="tag-row" id="tagRow">
+            <label class="tag-btn"><input type="checkbox" name="tags" value="免费"><span>🆓 免费</span></label>
+            <label class="tag-btn"><input type="checkbox" name="tags" value="付费"><span>💰 付费</span></label>
+            <label class="tag-btn"><input type="checkbox" name="tags" value="国产"><span>🇨🇳 国产</span></label>
+            <label class="tag-btn"><input type="checkbox" name="tags" value="国际"><span>🌍 国际</span></label>
+            <label class="tag-btn"><input type="checkbox" name="tags" value="开源"><span>🔓 开源</span></label>
+          </div>
+        </div>
+        <div class="grp">
+          <label>补充说明（选填）</label>
+          <textarea name="notes" placeholder="任何有助于审核的信息..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">立即提交推荐</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tag-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cb = btn.querySelector('input');
+        cb.checked = !cb.checked;
+        btn.classList.toggle('selected', cb.checked);
+      });
+    });
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      var form = e.target;
+      var btn = document.getElementById('submitBtn');
+      var tags = [].map.call(form.querySelectorAll('input[name="tags"]:checked'), function(i) { return i.value; });
+      var data = {
+        name: form.name.value,
+        url: form.url.value,
+        desc: form.desc.value,
+        email: form.email.value,
+        category: form.category.value,
+        tags: tags,
+        notes: form.notes.value,
+        submitted: new Date().toISOString()
+      };
+
+      btn.textContent = '提交中...';
+      btn.disabled = true;
+
+      // 本地记录（后续接入后端）
+      try {
+        var subs = JSON.parse(localStorage.getItem('miaoai_subs') || '[]');
+        subs.push(data);
+        localStorage.setItem('miaoai_subs', JSON.stringify(subs));
+      } catch(err) {}
+
+      form.style.display = 'none';
+      document.getElementById('successPanel').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

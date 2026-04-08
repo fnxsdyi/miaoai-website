@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://miaoai.xn--fiqs8s/sitemap.xml

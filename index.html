@@ -4,8 +4,23 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiaoAI - AI工具导航平台</title>
-  <meta name="description" content="发现最实用的AI工具，AI聊天、AI绘画、AI视频、AI编程一站式导航">
+  <title>MiaoAI - AI工具导航平台 | 发现最实用的AI工具</title>
+  <meta name="description" content="MiaoAI（妙AI）精选全球90+优质AI工具，涵盖AI聊天、AI绘画、AI视频、AI编程、AI音频、AI写作，帮助你快速找到合适的AI工具。">
+  <meta name="keywords" content="AI工具导航,AI工具,ChatGPT,Midjourney,AI绘画,AI聊天机器人,AI工具合集">
+  <meta name="author" content="MiaoAI">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://miaoai.xn--fiqs8s/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://miaoai.xn--fiqs8s/">
+  <meta property="og:title" content="MiaoAI - AI工具导航平台 | 发现最实用的AI工具">
+  <meta property="og:description" content="精选90+优质AI工具，涵盖聊天、绘画、视频、编程、音频、写作，助力效率提升！">
+  <meta property="og:site_name" content="妙AI">
+  <meta property="og:locale" content="zh_CN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MiaoAI - AI工具导航平台">
+  <meta name="twitter:description" content="精选90+优质AI工具，助力效率提升！">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
@@ -14,19 +29,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="妙AI">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
 </head>
 <body>
   <div class="bg-animation"></div>
 
   <header class="header-glass">
     <div class="header-inner">
-      <div class="logo" onclick="resetView()">
-        <img src="/logo.png" alt="妙AI.中国" class="logo-img">
-      </div>
+      <a class="logo" onclick="resetView()" style="cursor:pointer; text-decoration:none; display:flex; align-items:center; gap:10px;">
+        <img src="/logo.svg" alt="妙AI.中国" class="logo-img">
+      </a>
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="搜索AI工具..." autocomplete="off">
+        <input type="text" id="searchInput" class="search-input" placeholder="搜索AI工具..." autocomplete="off" accesskey="k">
+        <div class="search-hint">Ctrl+K</div>
         <div id="searchDropdown" class="search-dropdown hidden"></div>
       </div>
       <button class="fav-btn" onclick="shareOrFav()" title="分享或收藏本站">
@@ -37,10 +52,7 @@
   </header>
 
   <div class="main-content">
-    <!-- Category Sidebar (desktop) / Tab bar (mobile) -->
     <nav class="category-bar" id="categoryBar"></nav>
-
-    <!-- Main Grid -->
     <main class="content-area">
       <section id="toolGrid" class="tool-grid"></section>
       <div id="noResults" class="no-results hidden">
@@ -50,18 +62,45 @@
     </main>
   </div>
 
-  <!-- Mobile Bottom Nav -->
   <nav class="bottom-nav" id="bottomNav"></nav>
 
   <footer class="footer">
     <div class="footer-inner">
-      <p><img src="/logo.png" alt="妙AI.中国" style="height:18px;vertical-align:middle;border-radius:4px;"> 妙AI.中国 — 发现最实用的AI工具</p>
-      <p class="footer-sub">收录优质AI工具，助力效率提升</p>
+      <div class="footer-brand">
+        <img src="/logo.svg" alt="妙AI" style="height:28px;">
+        <p>精选全球优质AI工具，让AI助你提升效率</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>快速导航</h4>
+          <a href="/?cat=chat">💬 AI聊天</a>
+          <a href="/?cat=image">🎨 AI绘画</a>
+          <a href="/?cat=video">🎬 AI视频</a>
+          <a href="/?cat=code">💻 AI编程</a>
+          <a href="/?cat=audio">🎵 AI音频</a>
+          <a href="/?cat=writing">✍️ AI写作</a>
+        </div>
+        <div class="footer-col">
+          <h4>关于本站</h4>
+          <a href="/about.html">关于妙AI</a>
+          <a href="/submit.html">提交工具</a>
+          <a href="/sitemap.xml">网站地图</a>
+          <a href="https://github.com/fnxsdyi/miaoai-website" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-col">
+          <h4>联系合作</h4>
+          <a href="mailto:miaoai@outlook.com">📧 miaoai@outlook.com</a>
+          <a href="/submit.html">🚀 提交工具</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MiaoAI（miaoai.xn--fiqs8s）All Rights Reserved</p>
+        <p>每天发现AI新工具，让效率飞起来 🚀</p>
+      </div>
     </div>
   </footer>
 
   <script src="/app.js"></script>
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
   <script>
   function shareOrFav(){
     if(navigator.share && navigator.canShare && navigator.canShare({url:window.location.href})){
