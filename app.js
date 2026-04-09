@@ -210,4 +210,43 @@
     const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
     return text.replace(regex, '<span class="highlight-text">$1</span>');
   }
+
+  // ---- AI资讯侧边栏 ----
+  function initNewsSidebar() {
+    const list = document.getElementById('newsList');
+    if (!list) return;
+    fetch('/news.html')
+      .then(r => r.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const cards = doc.querySelectorAll('.card');
+        const items = [];
+        cards.forEach(card => {
+          const h2 = card.querySelector('h2');
+          const dateEl = card.querySelector('.card-date');
+          if (h2) {
+            const title = h2.textContent.trim();
+            const date = dateEl ? dateEl.textContent.trim() : '';
+            const hot = title.includes('GPT-6') || title.includes('Anthropic') ? '<span class="news-hot-tag">热</span>' : '';
+            items.push({ title, date, hot });
+          }
+        });
+        if (items.length === 0) {
+          list.innerHTML = '<li><a href="/news.html">暂无资讯</a></li>';
+          return;
+        }
+        list.innerHTML = items.slice(0, 6).map(item => `
+          <li>
+            <a href="/news.html" target="_blank">
+              ${item.hot}<span class="news-date">${item.date}</span>${item.title}
+            </a>
+          </li>
+        `).join('');
+      })
+      .catch(() => {
+        list.innerHTML = '<li><a href="/news.html">资讯加载失败，点击查看</a></li>';
+      });
+  }
+  initNewsSidebar();
 })();

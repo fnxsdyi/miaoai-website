@@ -29,6 +29,61 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="妙AI">
+
+  <style>
+    /* ===== AI资讯右侧栏 ===== */
+    .news-sidebar{
+      width:15.5rem;
+      flex-shrink:0;
+      padding-top:0;
+      padding-bottom:2rem;
+      display:none;
+      /* 往右移5rem，顶端与左侧导航顶部对齐 */
+      margin-left:5rem;
+      margin-top:1rem;
+    }
+    @media(min-width:1024px){
+      .news-sidebar{display:block}
+    }
+    .news-panel{
+      background:rgba(255,255,255,.88);
+      border:1px solid rgba(139,92,246,.14);
+      border-radius:1rem;
+      overflow:hidden;
+      backdrop-filter:blur(16px);
+      margin:0 .5rem;
+      max-height:calc(100vh - 4rem);
+      overflow-y:auto;
+    }
+    .news-panel-hd{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:.85rem 1rem .75rem;
+      border-bottom:1px solid rgba(139,92,246,.08);
+    }
+    .news-panel-hd h3{font-size:.9rem;font-weight:700;color:#7c3aed;display:flex;align-items:center;gap:.35rem}
+    .news-panel-hd a{font-size:.78rem;color:#94a3b8;text-decoration:none;flex-shrink:0}
+    .news-panel-hd a:hover{color:#7c3aed}
+    .news-list{list-style:none;padding:.5rem .6rem}
+    .news-list li{border-bottom:1px solid rgba(139,92,246,.06)}
+    .news-list li:last-child{border-bottom:none}
+    .news-list a{display:block;padding:.6rem .5rem;border-radius:.4rem;font-size:.875rem;color:#475569;line-height:1.5;text-decoration:none;transition:all .15s}
+    .news-list a:hover{background:rgba(139,92,246,.07);color:#7c3aed}
+    .news-list a .news-date{font-size:.75rem;color:#94a3b8;margin-right:.35rem}
+    .news-hot-tag{
+      background:rgba(239,68,68,.12);
+      color:#dc2626;
+      font-size:.65rem;
+      padding:1px 6px;
+      border-radius:3px;
+      font-weight:600;
+      margin-right:.3rem;
+      vertical-align:middle;
+    }
+    /* 小屏幕：让content-area不受右侧栏影响 */
+    .content-area{flex:1;min-width:0}
+  </style>
 </head>
 <body>
   <div class="bg-animation"></div>
@@ -51,8 +106,12 @@
     </div>
   </header>
 
+  <!-- 三栏布局：左侧分类 | 中间工具 | 右侧资讯 -->
   <div class="main-content">
+    <!-- 左侧分类栏（固定） -->
     <nav class="category-bar" id="categoryBar"></nav>
+
+    <!-- 中间工具区 -->
     <main class="content-area">
       <section id="toolGrid" class="tool-grid"></section>
       <div id="noResults" class="no-results hidden">
@@ -60,6 +119,19 @@
         <p>没有找到匹配的工具</p>
       </div>
     </main>
+
+    <!-- 右侧AI资讯栏 -->
+    <aside class="news-sidebar" id="newsSidebar">
+      <div class="news-panel">
+        <div class="news-panel-hd">
+          <h3>🔥 AI资讯</h3>
+          <a href="/news.html" target="_blank">查看更多 →</a>
+        </div>
+        <ul class="news-list" id="newsList">
+          <li><a href="/news.html" target="_blank">📰 载入中...</a></li>
+        </ul>
+      </div>
+    </aside>
   </div>
 
   <nav class="bottom-nav" id="bottomNav"></nav>
