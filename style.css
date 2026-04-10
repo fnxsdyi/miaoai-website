@@ -127,9 +127,15 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;ba
 .footer-col{display:flex;flex-direction:column;gap:.4rem;min-width:7rem}
 .footer-col h4{font-size:.7rem;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
 .footer-col a{color:#64748b;text-decoration:none;font-size:.8125rem;transition:color .2s}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem}
+.footer-links a{color:#64748b;text-decoration:none;font-size:.8125rem;transition:color .2s}
+.footer-links a:hover{color:#7c3aed}
 .footer-col a:hover{color:#7c3aed}
 .footer-bottom{width:100%;text-align:center;padding-top:1.5rem;border-top:1px solid rgba(139,92,246,.08);display:flex;flex-direction:column;gap:.2rem}
 .footer-bottom p{font-size:.75rem;color:#94a3b8}
+.footer-icp{font-size:.72rem;color:#94a3b8;text-align:center;margin-top:.5rem}
+.footer-icp a{color:#94a3b8;text-decoration:none}
+.footer-icp a:hover{color:#7c3aed}
 
 /* ============ Dark Mode Toggle ============ */
 #themeToggle{background:none;border:none;cursor:pointer;padding:.4rem;color:#7c3aed;display:flex;align-items:center;border-radius:.5rem;transition:background .2s;flex-shrink:0}
