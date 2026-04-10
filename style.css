@@ -137,7 +137,17 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;ba
 .footer-icp a{color:#94a3b8;text-decoration:none}
 .footer-icp a:hover{color:#7c3aed}
 
-/* ============ Dark Mode Toggle ============ */
+/* ============ 今日推荐横幅 ============ */
+.today-pick{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(6,182,212,.06));border:1px solid rgba(139,92,246,.15);border-radius:12px;padding:.75rem 1rem;margin-bottom:1rem;backdrop-filter:blur(10px)}
+.today-pick-inner{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.today-pick-tag{font-size:.75rem;font-weight:700;color:#7c3aed;margin-right:.25rem;flex-shrink:0}
+.today-pick-item{font-size:.78rem;color:#475569;text-decoration:none;padding:.2rem .6rem;background:rgba(255,255,255,.7);border-radius:9999px;border:1px solid rgba(139,92,246,.15);transition:all .2s}
+.today-pick-item:hover{background:#7c3aed;color:#fff;border-color:#7c3aed}
+body.dark .today-pick{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(6,182,212,.1));border-color:rgba(139,92,246,.25)}
+body.dark .today-pick-item{background:rgba(30,30,55,.8);color:#94a3b8;border-color:rgba(139,92,246,.2)}
+body.dark .today-pick-item:hover{background:#7c3aed;color:#fff}
+
+
 #themeToggle{background:none;border:none;cursor:pointer;padding:.4rem;color:#7c3aed;display:flex;align-items:center;border-radius:.5rem;transition:background .2s;flex-shrink:0}
 #themeToggle:hover{background:rgba(124,58,237,.1)}
 
